@@ -1,11 +1,18 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "dist",
     "module": "commonjs",
-    "target": "es2019",
+    "target": "es6",
     "esModuleInterop": true,
-    "allowJs": true
+    "sourceMap": true,
+    "rootDirs": ["src"],
+    "baseUrl": "src",
+    "paths": {
+      "@/tests/*": ["../tests/*"],
+      "@/*": ["*"]
+    },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
   },
-  "include": ["**/*"],
-  "exclude": ["./dist"]
+  "exclude": ["node_modules"]
 }
