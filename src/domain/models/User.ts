@@ -5,3 +5,7 @@ export interface User {
   password: string;
   balance: number;
 }
+
+export interface InsertUserBalanceResult {
+  balance: number;
+}

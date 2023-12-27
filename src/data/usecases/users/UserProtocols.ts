@@ -4,3 +4,7 @@ export * from '../../../domain/usecases/users/CreateUser';
 export * from '../../protocols/db/users/CreateUserRepository';
 export * from '../../protocols/criptography/Hasher';
 export * from '../../protocols/db/users/LoadUserByEmailRepository';
+export * from '../../protocols/db/users/LoadUserByIdRepository';
+export * from '@/domain/usecases/users/InsertUserBalance';
+export * from '@/data/protocols/db/users/InsertUserBalanceRepository';
+export * from '../../../domain/usecases/users/LoadUserById';

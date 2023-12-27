@@ -6,7 +6,10 @@ import { User } from '@/domain/models/User';
 import { CreateUserModel } from '@/domain/usecases/users/CreateUser';
 
 import { LoadUserByEmailRepository } from '@/data/protocols/db/users/LoadUserByEmailRepository';
-import { CreateUserRepository } from '@/data/usecases/users/UserProtocols';
+import {
+  CreateUserRepository,
+  InsertUserBalanceModel,
+} from '@/data/usecases/users/UserProtocols';
 
 export class UsersRepository
   implements CreateUserRepository, LoadUserByEmailRepository
@@ -31,6 +34,33 @@ export class UsersRepository
     const user = await this.ormRepository.findOne({
       where: { email },
     });
+
+    return user;
+  }
+
+  public async loadById(id: string): Promise<User> {
+    const user = await this.ormRepository.findOne({
+      where: {
+        id,
+      },
+    });
+    if (!user) return null;
+
+    return user;
+  }
+
+  public async deposit(data: InsertUserBalanceModel): Promise<User> {
+    const user = await this.ormRepository.findOne({ where: { id: data.id } });
+
+    if (!user) {
+      return null;
+    }
+
+    if (typeof user.balance == 'string') {
+      user.balance = parseInt(user.balance) + data.amount;
+    }
+
+    await this.ormRepository.save(user);
 
     return user;
   }
