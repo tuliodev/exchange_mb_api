@@ -29,7 +29,7 @@ export class InsertUserBalanceController implements Controller {
         amount: httpRequest.body.amount,
       });
 
-      return ok({ insertBalance });
+      return ok({ balance: insertBalance.balance });
     } catch (error) {
       return serverError(error);
     }
