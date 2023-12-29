@@ -1,0 +1,25 @@
+version: "3"
+services:
+  app:
+    build: .
+    ports:
+      - "5050:5050"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: 1234
+      DB_DATABASE: exchange_mb_api
+      ENV: development
+      JWT_SECRET: 924e259e3fbe943da982749f4fbacfd3
+
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: exchange_mb_api
