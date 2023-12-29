@@ -4,7 +4,7 @@ export interface CreateUserModel {
   name: string;
   email: string;
   password: string;
-  balance: number;
+  balance?: number;
 }
 
 export interface CreateUser {
