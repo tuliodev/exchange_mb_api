@@ -6,7 +6,7 @@ import {
   Hasher,
   LoadUserByEmailRepository,
   User,
-} from './UserProtocols';
+} from '../UserProtocols';
 
 const makeHasher = (): Hasher => {
   class HasherStub implements Hasher {
