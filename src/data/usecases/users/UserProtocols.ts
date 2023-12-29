@@ -9,3 +9,4 @@ export * from '@/domain/usecases/users/InsertUserBalance';
 export * from '@/data/protocols/db/users/InsertUserBalanceRepository';
 export * from '../../../domain/usecases/users/LoadUserById';
 export * from '../../protocols/mail/SendMail';
+export * from '../../../domain/usecases/users/GetUserBalance';

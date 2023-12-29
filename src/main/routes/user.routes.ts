@@ -5,6 +5,7 @@ import { makeCreateUserController } from '../factories/controllers/users/CreateU
 import { makeInsertUserBalanceController } from '../factories/controllers/users/InsertUserBalanceControllerFactory';
 import { adaptMiddleware } from '../adapters/express/ExpressMiddlewareAdapter';
 import { makeAuthMiddleware } from '../factories/middlewares/AuthMiddlewareFactory';
+import { makeGetUserBalanceController } from '../factories/controllers/users/GetUserBalanceControllerFactory';
 
 export default (router: Router): void => {
   const authMiddleware = adaptMiddleware(makeAuthMiddleware());
@@ -14,5 +15,11 @@ export default (router: Router): void => {
     '/users/deposit',
     authMiddleware,
     adaptRoute(makeInsertUserBalanceController()),
+  );
+
+  router.get(
+    '/users/balance',
+    authMiddleware,
+    adaptRoute(makeGetUserBalanceController()),
   );
 };

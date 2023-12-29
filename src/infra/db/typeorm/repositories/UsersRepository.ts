@@ -8,6 +8,8 @@ import { CreateUserModel } from '@/domain/usecases/users/CreateUser';
 import { LoadUserByEmailRepository } from '@/data/protocols/db/users/LoadUserByEmailRepository';
 import {
   CreateUserRepository,
+  GetUserBalanceModel,
+  GetUserBalanceResult,
   InsertUserBalanceModel,
 } from '@/data/usecases/users/UserProtocols';
 
@@ -47,6 +49,15 @@ export class UsersRepository
     if (!user) return null;
 
     return user;
+  }
+
+  public async getBalanceById(
+    data: GetUserBalanceModel,
+  ): Promise<GetUserBalanceResult> {
+    const user = await this.loadById(data.id);
+    if (!user) return null;
+
+    return { balance: user.balance };
   }
 
   public async deposit(data: InsertUserBalanceModel): Promise<User> {
